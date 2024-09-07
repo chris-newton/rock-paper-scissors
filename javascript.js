@@ -50,6 +50,10 @@ function playGame() {
                 computerScore++;
                 console.log("You lose! Rock beats scissors.")
             }
+        } 
+
+        if (humanChoice === computerChoice) {
+            console.log(`${humanChoice} and ${computerChoice} tie.`)
         }
     }
 
@@ -58,9 +62,13 @@ function playGame() {
     }
 
     if (humanScore > computerScore) {
-        console.log(`You won!`)
+        console.log("You won!")
+    } else if (humanScore < computerScore){
+        console.log("You lost!")
     } else {
-        console.log(`You lost!`)
+        console.log("Draw!")
     }
     console.log(`Your score: ${humanScore} Computer score: ${computerScore}`)
 }
+
+playGame()
