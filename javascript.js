@@ -37,26 +37,26 @@ function playGame() {
         if (humanChoice === "rock") {
             if (computerChoice === "scissors") {
                 humanScore++;
-                roundOutcome.textContent = "You win! Rock beats scissors.";
+                roundOutcome.textContent = "Round won. Rock beats scissors.";
             } else if (computerChoice === "paper"){
                 computerScore++;
-                roundOutcome.textContent = "You lose! Paper beats rock.";
+                roundOutcome.textContent = "Round lost. Paper beats rock.";
             }
         } else if (humanChoice === "paper") {
             if (computerChoice === "rock") {
                 humanScore++;
-                roundOutcome.textContent = "You win! Paper beats rock.";
+                roundOutcome.textContent = "Round won. Paper beats rock.";
             } else if (computerChoice === "scissors"){
                 computerScore++;
-                roundOutcome.textContent = "You lose! Scissors beats paper.";
+                roundOutcome.textContent = "Round lost. Scissors beats paper.";
             }
         } else if (humanChoice === "scissors") {
             if (computerChoice === "paper") {
                 humanScore++;
-                roundOutcome.textContent = "You win! Scissors beats paper.";
+                roundOutcome.textContent = "Round won. Scissors beats paper.";
             } else if (computerChoice === "rock"){
                 computerScore++;
-                roundOutcome.textContent = "You lose! Rock beats scissors.";
+                roundOutcome.textContent = "Round lost. Rock beats scissors.";
             }
         } 
 
@@ -67,13 +67,19 @@ function playGame() {
         humanScoreDiv.textContent = "player: " + humanScore;
         computerScoreDiv.textContent = "computer: " + computerScore;
         round++;
+
+        if (humanScore == 5) {
+            roundOutcome.textContent = "You won!"
+        } else if (computerScore == 5) {
+            roundOutcome.textContent = "You lost!"
+        }
     }
 
     // Initialize Event Listeners
     const rockButton = document.querySelector("#rock")
-    rockButton.addEventListener("click", function(e) {
-        playRound(e);
-    });
+    rockButton.addEventListener("click", (e) =>
+        playRound(e)
+    );
 
     const paperButton = document.querySelector("#paper")
     paperButton.addEventListener("click", function(e) {
