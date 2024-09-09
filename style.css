@@ -19,7 +19,17 @@ body {
     background-color: rgb(39, 39, 39);
     display: flex;
     flex-direction: column;
-    border: 1px solid brgb(29, 29, 29);
+    border: 1px solid rgb(29, 29, 29);
+}
+
+.end-div {
+    color: white;
+    height: 100%;
+    font-size: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {

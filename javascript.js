@@ -22,7 +22,7 @@ function getHumanChoice() {
 function playGame() {
     let humanScore = 0;
     let computerScore = 0;
-    let round = 0;
+    let round = 1;
 
     const roundOutcome = document.querySelector(".round-outcome");
     const roundDiv = document.querySelector(".round");
@@ -32,7 +32,6 @@ function playGame() {
     function playRound(e) {
         humanChoice = e.target.id.toLowerCase();
         computerChoice = getComputerChoice();
-        roundDiv.textContent = "round: " + round;
         
         if (humanChoice === "rock") {
             if (computerChoice === "scissors") {
@@ -66,12 +65,35 @@ function playGame() {
 
         humanScoreDiv.textContent = "player: " + humanScore;
         computerScoreDiv.textContent = "computer: " + computerScore;
+        roundDiv.textContent = "round: " + round;
         round++;
 
+        // end conditions
         if (humanScore == 5) {
-            roundOutcome.textContent = "You won!"
+            const topPanel = document.querySelector(".top-panel");
+            topPanel.remove();
+            const bottomPanel = document.querySelector(".bottom-panel");
+            bottomPanel.remove();
+
+            const container = document.querySelector(".container");
+            const endDiv = document.createElement("div");
+            container.appendChild(endDiv);
+
+            endDiv.classList.add("end-div")
+            endDiv.textContent = "You won!";
+
         } else if (computerScore == 5) {
-            roundOutcome.textContent = "You lost!"
+            const topPanel = document.querySelector(".top-panel");
+            topPanel.remove();
+            const bottomPanel = document.querySelector(".bottom-panel");
+            bottomPanel.remove();
+            
+            const container = document.querySelector(".container");
+            const endDiv = document.createElement("div");
+            container.appendChild(endDiv);
+
+            endDiv.classList.add("end-div");
+            endDiv.textContent = "You lost!";
         }
     }
 
