@@ -12,6 +12,7 @@ function getComputerChoice() {
     return choice;
 }
 
+// not used in UI since human choices are made by button clicks
 function getHumanChoice() {
     let choice = prompt("rock, paper, or scissors?");
 
@@ -21,6 +22,7 @@ function getHumanChoice() {
 function playGame() {
     let humanScore = 0;
     let computerScore = 0;
+    let round = 0;
 
     function playRound(humanChoice, computerChoice) {
         humanChoice = humanChoice.toLowerCase();
@@ -55,12 +57,27 @@ function playGame() {
         if (humanChoice === computerChoice) {
             console.log(`${humanChoice} and ${computerChoice} tie.`)
         }
+
+        round++;
     }
 
-    for (let i = 0; i < 5; i++) {
-        playRound(getHumanChoice(), getComputerChoice());
+    const rockButton = document.querySelector("#rockButton")
+    rockButton.addEventListener("click", playRound("rock", getComputerChoice()))
+
+    const paperButton = document.querySelector("#paperButton")
+    paperButton.addEventListener("click", playRound("paper", getComputerChoice()))
+
+    const scissorsButton = document.querySelector("#scissorsButton")
+    scissorsButton.addEventListener("click", playRound("scissors", getComputerChoice()))
+    
+    /*
+
+    // play until a player gets to 5 wins
+    while (humanScore < 5 && computerScore < 5) {
+        // round
     }
 
+    */
     if (humanScore > computerScore) {
         console.log("You won!")
     } else if (humanScore < computerScore){
