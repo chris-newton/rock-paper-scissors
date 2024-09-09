@@ -24,14 +24,16 @@ function playGame() {
     let computerScore = 0;
     let round = 0;
 
-    const gameState = document.querySelector(".game-state");
-    const scoreBoard = document.querySelector(".scoreboard");
     const roundOutcome = document.querySelector(".round-outcome");
-    
+    const roundDiv = document.querySelector(".round");
+    const humanScoreDiv = document.querySelector(".human-score");
+    const computerScoreDiv = document.querySelector(".computer-score");
+        
     function playRound(e) {
         humanChoice = e.target.id.toLowerCase();
         computerChoice = getComputerChoice();
-    
+        roundDiv.textContent = "round: " + round;
+        
         if (humanChoice === "rock") {
             if (computerChoice === "scissors") {
                 humanScore++;
@@ -62,6 +64,8 @@ function playGame() {
             roundOutcome.textContent = `${humanChoice} and ${computerChoice} tie.`; 
         }
 
+        humanScoreDiv.textContent = "player: " + humanScore;
+        computerScoreDiv.textContent = "computer: " + computerScore;
         round++;
     }
 
@@ -81,12 +85,7 @@ function playGame() {
         playRound(e);
     });
 
-/* 
-    // play until a player gets to 5 wins
-    while (humanScore < 5 && computerScore < 5) {
-        // round
-    }
-
+/*
     
 
 
