@@ -14,9 +14,26 @@ function getComputerChoice() {
 
 // not used in UI since human choices are made by button clicks
 function getHumanChoice() {
-    let choice = prompt("rock, paper, or scissors?");
+    return prompt("rock, paper, or scissors?");
+}
 
-    return choice;
+function displayEndScreen(winner) {
+    const topPanel = document.querySelector(".top-panel");
+    topPanel.remove();
+    const bottomPanel = document.querySelector(".bottom-panel");
+    bottomPanel.remove();
+    
+    const container = document.querySelector(".container");
+    const endDiv = document.createElement("div");
+    container.appendChild(endDiv);
+
+    endDiv.classList.add("end-div");
+
+    if (winner === "human") {
+        endDiv.textContent = "You won!";
+    } else if (winner === "computer") {
+        endDiv.textContent = "You lost!";
+    }
 }
 
 function playGame() {
@@ -70,63 +87,20 @@ function playGame() {
 
         // end conditions
         if (humanScore == 5) {
-            const topPanel = document.querySelector(".top-panel");
-            topPanel.remove();
-            const bottomPanel = document.querySelector(".bottom-panel");
-            bottomPanel.remove();
-
-            const container = document.querySelector(".container");
-            const endDiv = document.createElement("div");
-            container.appendChild(endDiv);
-
-            endDiv.classList.add("end-div")
-            endDiv.textContent = "You won!";
-
+            displayEndScreen("human");
         } else if (computerScore == 5) {
-            const topPanel = document.querySelector(".top-panel");
-            topPanel.remove();
-            const bottomPanel = document.querySelector(".bottom-panel");
-            bottomPanel.remove();
-            
-            const container = document.querySelector(".container");
-            const endDiv = document.createElement("div");
-            container.appendChild(endDiv);
-
-            endDiv.classList.add("end-div");
-            endDiv.textContent = "You lost!";
+            displayEndScreen("computer");
         }
     }
 
     // Initialize Event Listeners
-    const rockButton = document.querySelector("#rock")
-    rockButton.addEventListener("click", (e) =>
-        playRound(e)
-    );
-
-    const paperButton = document.querySelector("#paper")
-    paperButton.addEventListener("click", function(e) {
-        playRound(e);
-    });
-
-    const scissorsButton = document.querySelector("#scissors")
-    scissorsButton.addEventListener("click", function(e) {
-        playRound(e);
-    });
-
-/*
-    
-
-
-    if (humanScore > computerScore) {
-        console.log("You won!")
-    } else if (humanScore < computerScore){
-        console.log("You lost!")
-    } else {
-        console.log("Draw!")
-    }
-
-*/
-    console.log(`Your score: ${humanScore} Computer score: ${computerScore}`)
+    // "Event Delegation"
+    const buttons = document.querySelectorAll("button")
+    buttons.forEach((button) => {
+        button.addEventListener("click", (e) =>
+            playRound(e)
+        );
+    })
 }
 
 playGame()
